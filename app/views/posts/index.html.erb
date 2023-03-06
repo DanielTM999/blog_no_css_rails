@@ -1,20 +1,131 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-<h1>Posts</h1>
+h1 {
+  color: #333;
+  text-align: center;
+}
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= post.autor %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
+p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
+}
 
-<%= link_to "New post", new_post_path %>
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Login", new_user_session_path %>
-<% end %>
+#posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#posts > * {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 400px;
+}
+
+#posts a {
+  display: block;
+  text-align: center;
+  color: #fff;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+#posts a:hover {
+  background-color: #444;
+  transform: translateY(-3px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#notice {
+  color: green;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: #f00;
+  transform: scale(1.1);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+    </style>
+</head>
+<body>
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Posts</h1>
+
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <p style="display: table;">
+        <span style="display: table-cell; padding-right: 10px;"><%= post.titulo %></span>
+        <span style="display: table-cell;"><%= link_to "Show this post", post %></span>
+      </p>
+    <% end %>
+  </div>
+  <div class="container">
+    <%= link_to "New post", new_post_path, class: "btn" %>
+    <% if user_signed_in? %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "btn" %>
+    <% end %>
+  </div>
+</body>
+
+</html>
+
 

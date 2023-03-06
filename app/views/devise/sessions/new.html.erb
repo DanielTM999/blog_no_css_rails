@@ -1,26 +1,109 @@
-<h2>Log in</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
+}
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+h2 {
+  text-align: center;
+}
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+form {
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #CCCCCC;
+}
 
-  <% if devise_mapping.rememberable? %>
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+}
+
+.actions {
+  text-align: center;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0069D9;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.devise-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+    </style>
+</head>
+<body>
+
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="devise-links">
+    <%= render "devise/shared/links" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+</body>
+</html>
